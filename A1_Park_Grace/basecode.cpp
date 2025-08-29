@@ -26,7 +26,7 @@ using namespace std;
 //=============================================================================
 struct GameState
 {
-    string username;
+    string username; //string class' construcor initializes username to ""
     unsigned int points;
     int totalQuestions;
     int correctAnswers;
@@ -35,16 +35,17 @@ struct GameState
     const int ARRAY_SIZE;
 
     // Constructor 
+   
     GameState() : points(0), totalQuestions(0), correctAnswers(0),
                   decimalCount(0), ARRAY_SIZE(3)
     {
-        decimals = new int[ARRAY_SIZE];
+        decimals = new int[ARRAY_SIZE]; //resources allocation
     }
 
     // Destructor 
     ~GameState()
     {
-        delete[] decimals;
+        delete[] decimals; //clean up the resources--> no (heap) memory leak
     }
 };
 
