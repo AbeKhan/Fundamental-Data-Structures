@@ -1,0 +1,14 @@
+Decimal batch: 15 27 255 
+Decimal batch: 42 128 7 
+Decimal batch: 163 9 240 
+Decimal batch: 16 85 200 
+Decimal batch: 31 144 73 
+Decimal batch: 156 92 
+Decimal batch: 88 199 45 
+Decimal batch: 12 234 67 
+Decimal batch: 178 29 135 
+Decimal batch: 203 41 98 
+Decimal batch: 77 152 224 
+Decimal batch: 33 187 64 
+Decimal batch: 111 246 19 
+Decimal batch: 158 82
