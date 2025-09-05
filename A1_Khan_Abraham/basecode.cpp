@@ -18,6 +18,7 @@ Day 5: Testing, debugging, documentation
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <algorithm>
 
 using namespace std;
 
@@ -205,8 +206,11 @@ int getValidatedChoice()
     string choice;
     cout << "Enter 0 to quit, 1 to contuine " << endl;
     cin >> choice;
+    stoi(choice);
+    if (stoi(choice) != 0 || stoi(choice) != 1)
+        cout << "Invalid input. Please enter 0 to quit or 1 to continue." << endl;
 
-    return 0; // PLACEHOLDER - Remove this line
+    return stoi(choice); // PLACEHOLDER - Remove this line
 }
 
 string getValidatedHexAnswer()
@@ -217,6 +221,19 @@ string getValidatedHexAnswer()
     // - Validate only 0-9 and a-f characters allowed
     // - Loop until valid hex string provided
     // - Return valid hex string
+    string hexAnswer;
+    cout << "Enter your answer: ";
+    cin >> hexAnswer;
+    transform(hexAnswer.begin(), hexAnswer.end(), hexAnswer.begin(), ::tolower);
+    for (char c : hexAnswer)
+    {
+        if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')))
+        {
+            cout << "Invalid input. Please enter a valid hexadecimal number (0-9, a-f)." << endl;
+            return getValidatedHexAnswer();
+        }
+    }
+
 
     return ""; // PLACEHOLDER - Remove this line
 }

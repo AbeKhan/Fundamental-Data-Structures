@@ -60,6 +60,8 @@
     "cmath": "cpp",
     "iostream": "cpp",
     "new": "cpp",
-    "fstream": "cpp"
+    "fstream": "cpp",
+    "ostream": "cpp",
+    "optional": "cpp"
   }
 }
