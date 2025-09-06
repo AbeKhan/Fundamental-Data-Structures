@@ -150,8 +150,6 @@ string getCurrentDateTime()
 
 string getUsernameInput()
 {
-    string userName;
-    bool valid = false;
     // TODO: Implement username input with validation loop
     // - Display prompt "=== Hex Conversion Game ==="
     // - Get username from user
@@ -161,12 +159,15 @@ string getUsernameInput()
     // - Loop until valid username provided
     // - Return the valid username
 
+    string userName;
+    bool valid = false;
+
     cout << "=== Hex Conversion Game ==" << endl;
-    cout << "Please enter your user name: ";
+    cout << "Please enter your user name (3-20 characters): ";
     while (!valid)
     {
         getline(cin, userName);
-        trim(userName);
+        userName = trim(userName);
         valid = validateUsername(userName);
         if (!valid)
         {
@@ -175,7 +176,7 @@ string getUsernameInput()
         }
     }
 
-    return userName; // PLACEHOLDER - Remove this line
+    return userName;
 }
 
 bool validateUsername(const string &username)
@@ -186,13 +187,20 @@ bool validateUsername(const string &username)
     // - Only alphanumeric characters and spaces allowed
     // - Cannot be only spaces (use trim() to check)
     // - Return true if valid, false if invalid
+    string usernameTrim = trim(username);
+    bool alphanumeric = true;
+    bool validLength = !(usernameTrim.length() < 3 || usernameTrim.length() > 20);
+    bool notOnlySpace = !(usernameTrim == "");
 
-    if ((username.size() < 3 || username.size() > 20) || trim(username) == "")
-        return false;
-    else
-        return true;
+    for (char c : username)
+    {
+        alphanumeric = (c >= 'A' && c <= 'Z') ||
+                       (c >= 'a' && c <= 'z') ||
+                       (c >= '0' && c <= '9') ||
+                       (c == ' ');
+    }
 
-    // return false; // PLACEHOLDER - Remove this line
+    return alphanumeric && notOnlySpace && validLength;
 }
 
 int getValidatedChoice()
@@ -205,12 +213,14 @@ int getValidatedChoice()
 
     string choice;
     cout << "Enter 0 to quit, 1 to contuine " << endl;
-    cin >> choice;
-    stoi(choice);
-    if (stoi(choice) != 0 || stoi(choice) != 1)
-        cout << "Invalid input. Please enter 0 to quit or 1 to continue." << endl;
-
-    return stoi(choice); // PLACEHOLDER - Remove this line
+    do
+    {
+        cin >> choice;
+        stoi(choice);
+        if (stoi(choice) != 0 || stoi(choice) != 1)
+            cout << "Invalid input. Please enter 0 to quit or 1 to continue: ";
+    } while (stoi(choice) != 1 || stoi(choice) != 0);
+    return stoi(choice);
 }
 
 string getValidatedHexAnswer()
@@ -222,20 +232,27 @@ string getValidatedHexAnswer()
     // - Loop until valid hex string provided
     // - Return valid hex string
     string hexAnswer;
-    cout << "Enter your answer: ";
-    cin >> hexAnswer;
-    transform(hexAnswer.begin(), hexAnswer.end(), hexAnswer.begin(), ::tolower);
-    for (char c : hexAnswer)
+    bool validHex = false;
+    do
     {
-        if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')))
+
+        cout << "Enter your answer: ";
+        cin >> hexAnswer;
+        transform(hexAnswer.begin(), hexAnswer.end(), hexAnswer.begin(), ::tolower);
+        for (char c : hexAnswer)
         {
-            cout << "Invalid input. Please enter a valid hexadecimal number (0-9, a-f)." << endl;
-            return getValidatedHexAnswer();
+            if (!((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')))
+            {
+                cout << "Invalid input. Please enter a valid hexadecimal number (0-9, a-f). " << endl;
+                validHex = false;
+                break;
+            }
+            else
+                validHex = true;
         }
-    }
 
-
-    return ""; // PLACEHOLDER - Remove this line
+    } while (validHex);
+    return hexAnswer;
 }
 
 void displayWelcome(const string &username)
@@ -258,7 +275,7 @@ void displayGameStats(int points, int totalQuestions, int correctAnswers)
         cout << "Current Score: " << points << "  points | Accuracy: 00.0%" << endl;
     }
     else
-        cout << "Current Score: " << points << "  points | Accuracy: " << correctAnswers / totalQuestions << "%" << endl;
+        cout << "Current Score: " << points << "  points | Accuracy: " << correctAnswers / double(totalQuestions) << setprecision(1) << "%" << endl;
 }
 
 void displayQuestion(int questionNumber, int decimal)
@@ -286,7 +303,12 @@ void displayFinalSummary(const GameState &game)
     // Calculate and show final accuracy percentage
     // Thank the player
 
-    cout << "Name: " << game.username << " Total Questions: " << game.totalQuestions << " Answered Correclty: " << game.correctAnswers << " Final Score: " << game.points << endl;
+    cout << "Name: " << game.username
+         << " Total Questions: " << game.totalQuestions
+         << " Answered Correclty: " << game.correctAnswers
+         << " Final Score: " << game.points << endl;
+
+    cout << "Thank you for playing! Come back soon " << game.username << "!" << endl;
 }
 
 //-----------------------------------------------------------------------------
@@ -314,6 +336,18 @@ bool playGameRound(GameState &game)
     // - Store decimal in array
     // - Ask if user wants to continue
     // - Return true to continue, false to quit
+
+    int randomInt = generateDecimal();
+    string userAnswer;
+    string correctAnswer = convertDecToHex(randomInt);
+    game.totalQuestions++;
+
+    cout << "Convert " << randomInt << " to a hex value. ";
+    userAnswer = getValidatedHexAnswer();
+    checkAnswer(userAnswer, correctAnswer);
+    // displayGameStats();
+
+    // updateScore();
 
     return false; // PLACEHOLDER - Remove this line
 }
@@ -367,6 +401,9 @@ bool checkAnswer(const string &userAnswer, const string &correctAnswer)
     // TODO: Compare user answer with correct answer
     // Return true if they match exactly, false otherwise
 
+    if (userAnswer == correctAnswer)
+        return true;
+
     return false; // PLACEHOLDER - Remove this line
 }
 
@@ -375,6 +412,11 @@ void updateScore(GameState &game, bool isCorrect)
     // TODO: Update game score
     // If correct: increment points and correctAnswers
     // This function modifies the GameState
+    if (isCorrect)
+    {
+        game.points++;
+        game.correctAnswers++;
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -391,6 +433,23 @@ void saveQuestionHistory(int decimal, const string &userAnswer,
     // Use getCurrentDateTime() for timestamp
     // Handle file open errors gracefully
     // Close file when done
+
+    fstream file;
+
+    file.open("questions_history.txt", ios::out | ios::app);
+
+    if (file.is_open())
+    {
+        file << "timestamp " << getCurrentDateTime()
+             << " | user " << username
+             << " | question " << decimal
+             << " | user answer " << userAnswer
+             << " | correct answer " << correctAnswer
+             << " | result " << isCorrect << endl;
+        file.close();
+    }
+    else
+        cerr << "Failed to open file." << endl;
 }
 
 void saveSessionInfo(const GameState &game)
@@ -402,6 +461,20 @@ void saveSessionInfo(const GameState &game)
     // Format nicely with proper spacing
     // Handle file open errors gracefully
     // Close file when done
+
+    fstream file;
+
+    file.open("session_history.txt", ios::out | ios::app);
+
+    if (file.is_open())
+    {
+        file << "timestamp " << getCurrentDateTime()
+             << " | player " << game.username
+             << " | points " << game.points << endl;
+        file.close();
+    }
+    else
+        cerr << "Failed to open file." << endl;
 }
 
 void storeDecimal(GameState &game, int decimal)
@@ -414,6 +487,16 @@ void storeDecimal(GameState &game, int decimal)
     //   - Call flushDecimalsToFile() to save current array
     //   - Put new decimal at index 0
     //   - Set count to 1
+    if (game.decimalCount < game.ARRAY_SIZE)
+    {
+        game.decimals[game.decimalCount - 1] = decimal;
+    }
+    else
+    {
+        flushDecimalsToFile(game);
+        game.decimals[0] = decimal;
+        game.decimalCount = 1;
+    }
 }
 
 void flushDecimalsToFile(const GameState &game)
@@ -424,6 +507,21 @@ void flushDecimalsToFile(const GameState &game)
     // Use game.decimalCount to know how many decimals to write
     // Handle file open errors gracefully
     // Close file when done
+
+    fstream file;
+
+    file.open("decimalHistory.txt", ios::out | ios::app);
+    file << "Decimal batch: ";
+    if (file.is_open())
+    {
+        for (int i = 0; i < game.decimalCount; i++)
+        {
+            file << game.decimals[i] << " ";
+        }
+        file << endl;
+    }
+    else
+        cerr << "Failed to open file." << endl;
 }
 
 //=============================================================================
