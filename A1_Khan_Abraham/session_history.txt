@@ -5,3 +5,17 @@ Total Questions: 4
 Correct Answers: 0
 Accuracy: 0%
 -----------------------
+=== Session Summary ===
+Date/Time: Sat Sep  6 23:06:22 2025
+Player: abk
+Total Questions: 2
+Correct Answers: 1
+Accuracy: 50%
+-----------------------
+=== Session Summary ===
+Date/Time: Sat Sep  6 23:08:17 2025
+Player: abk
+Total Questions: 4S
+Correct Answers: 4
+Accuracy: 100%
+-----------------------

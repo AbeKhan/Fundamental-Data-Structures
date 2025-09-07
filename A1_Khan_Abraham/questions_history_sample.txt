@@ -1,9 +1,0 @@
-questions_history.txt: Individual question-by-question log with timestamps
-
-Wed Aug 28 14:23:45 2025 | User: Alice Smith | Question: 15 -> hex | User Answer: f | Correct Answer: f | Result: CORRECT
-Wed Aug 28 14:23:52 2025 | User: Alice Smith | Question: 27 -> hex | User Answer: 1b | Correct Answer: 1b | Result: CORRECT
-Wed Aug 28 14:24:03 2025 | User: Alice Smith | Question: 255 -> hex | User Answer: ff | Correct Answer: ff | Result: CORRECT
-Wed Aug 28 14:24:15 2025 | User: Alice Smith | Question: 42 -> hex | User Answer: 2c | Correct Answer: 2a | Result: INCORRECT
-Wed Aug 28 14:24:28 2025 | User: Alice Smith | Question: 128 -> hex | User Answer: 80 | Correct Answer: 80 | Result: CORRECT
-Wed Aug 28 14:24:35 2025 | User: Alice Smith | Question: 7 -> hex | User Answer: 7 | Correct Answer: 7 | Result: CORRECT
-Wed Aug 28 14:25:12 2025 | User: Bob Johnson | Question: 163 -> hex | User Answer: a3 | Correct Answer: a3 | Result: CORRECT
