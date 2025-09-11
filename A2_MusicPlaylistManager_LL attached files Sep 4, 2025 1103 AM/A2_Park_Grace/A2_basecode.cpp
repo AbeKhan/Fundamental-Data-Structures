@@ -86,14 +86,14 @@ void displayMainMenu()
     std::cout << std::string(50, '=') << std::endl;
     std::cout << "Enter your choice (0-6): ";
 }
-void handleMenuChoice(int choice)
+void PlaylistManager::handleMenuChoice(int choice)
 {
     std::cout << std::endl;
 
     switch (choice)
     {
     case 1:
-        addSongMenu(); //
+        addSongMenu();
         break;
     case 2:
         displayPlaylist();
@@ -121,10 +121,10 @@ void handleMenuChoice(int choice)
     {
         std::cout << "\nPress Enter to continue...";
         std::cin.ignore(); //
-        //discard only the next single character from the input buffer. Commonly used to remove the trailing newline character using cin >> to read a numeric value, which leaves the newline in the buffer.
-	   //Check out cin.ignore(count), ignore(count, delimiter)
-	   //cin.clear() : to reset the error flags and discard the invalid characters, allowing for subsequent input
-	   std::cin.get(); //read one character and return an int   
+        // discard only the next single character from the input buffer. Commonly used to remove the trailing newline character using cin >> to read a numeric value, which leaves the newline in the buffer.
+        // Check out cin.ignore(count), ignore(count, delimiter)
+        // cin.clear() : to reset the error flags and discard the invalid characters, allowing for subsequent input
+        std::cin.get(); // read one character and return an int
     }
 }
 // Song TODO: Students need to implement undefined functions listed in Song

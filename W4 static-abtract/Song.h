@@ -14,13 +14,14 @@ private:
 
     // validGenres does not depend on a single object
     //
-    static vector<string> validGenres; // empty vector of strings
+    static vector<string> validGenres; // empty vector declation, not considered a definition (allocate memeory)
     string genre;
 
 public:
-    Song(string, string); // title, genre
+    Song(string, string&); // title, genre
 
     static void addGenres(string);// it can access only static members
+    void printGenres();
 
     // no need for destructor as there is no dynamic memory (heap memory)
 };
