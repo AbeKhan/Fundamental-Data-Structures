@@ -69,7 +69,7 @@ int main()
     return 0;
 }
 
-void displayMainMenu()
+void PlaylistManager::displayMainMenu()
 {
     std::cout << "\n"
               << std::string(50, '=') << std::endl;
