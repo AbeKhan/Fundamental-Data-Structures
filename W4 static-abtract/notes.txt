@@ -1,0 +1,6 @@
+Function call stack.
+
+
+
+
+Main start at the bottom of the stack, with the functions on top if it.
