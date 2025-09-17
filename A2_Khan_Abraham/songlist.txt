@@ -1,6 +1,3 @@
-# Sample Music Playlist Data File
-# Format: Title|Artist|Duration(seconds)|Genre|Rating(1-5)
-# Lines starting with # are comments and should be ignored
 
 Bohemian Rhapsody|Queen|355|Rock|5
 Sweet Child O' Mine|Guns N' Roses|356|Rock|5
@@ -11,3 +8,7 @@ Black|Pearl Jam|343|Grunge|4
 Smells Like Teen Spirit|Nirvana|301|Grunge|4
 Come As You Are|Nirvana|218|Grunge|3
 Jeremy|Pearl Jam|319|Alternative|4
+
+# Sample Music Playlist Data File
+# Format: Title|Artist|Duration(seconds)|Genre|Rating(1-5)
+# Lines starting with # are comments and should be ignored
