@@ -1,0 +1,1 @@
+Whenever creating a class or struct it is best to create data memeber from largest to smallest to get the best uses of space possible.
