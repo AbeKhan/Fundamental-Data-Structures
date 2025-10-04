@@ -1,3 +1,4 @@
-Decimal batch: 
-Decimal batch: 
-Decimal batch: 
+Decimal batch: 171 15 228 
+Decimal batch: 97 46 171 
+Decimal batch: 55 116 
+Decimal batch: 153 241 246 

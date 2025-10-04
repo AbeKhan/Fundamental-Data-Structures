@@ -500,6 +500,7 @@ void saveSessionInfo(const GameState &game)
         file << "Total Questions: " << game.totalQuestions << endl;
         file << "Correct Answers: " << game.correctAnswers << endl;
         file << "Accuracy: " << (game.correctAnswers / double(game.totalQuestions)) * 100 << setprecision(1) << "%" << endl;
+        file << "Total Points: " << game.correctAnswers << endl;
         file << "-----------------------" << endl;
         file.close();
     }
@@ -519,7 +520,8 @@ void storeDecimal(GameState &game, int decimal)
     //   - Set count to 1
     if (game.decimalCount < game.ARRAY_SIZE)
     {
-        game.decimals[game.decimalCount - 1] = decimal;
+        game.decimals[game.decimalCount] = decimal;
+        game.decimalCount++;
     }
     else
     {
@@ -538,23 +540,23 @@ void flushDecimalsToFile(const GameState &game)
     // Handle file open errors gracefully
     // Close file when done
 
-    fstream file;
-    file.open("decimalHistory.txt", ios::out | ios::app);
+    std::ofstream file("decimalHistory.txt", std::ios::app); // cleaner
 
-    if (file.is_open())
+    if (!file)
     {
-        file << "Decimal batch: ";
-        for (int i = 0; i < game.decimalCount; i++)
-        {
-            file << game.decimals[i] << " ";
-        }
-        file << endl;
-        file.close();
+        std::cerr << "Failed to open decimalHistory.txt for writing." << std::endl;
+        return;
     }
-    else
+
+    file << "Decimal batch: ";
+    file << std::fixed << std::setprecision(2); // optional: format to 2 decimal places
+
+    for (int i = 0; i < game.decimalCount; ++i)
     {
-        cerr << "Failed to open file." << endl;
+        file << game.decimals[i] << " ";
     }
+
+    file << std::endl;
 }
 
 //=============================================================================
