@@ -10,18 +10,26 @@ Account::~Account()
 {
     cout << "~Accout() : " << this << endl;
 };
-double Account::getBalance() const {
+double Account::getBalance() const
+{
     return balance;
 };
-void Account::withdraw(double amount) {
-    if(balance > amount)
+
+void Account::setBalance(double newBalance)
+{
+    balance = newBalance;
+};
+
+void Account::withdraw(double amount)
+{
+    if (balance > amount)
     {
         balance -= amount;
     }
     else
         cout << "insufficent funds" << endl;
 };
-void Account::deposit(double amount) {
+void Account::deposit(double amount)
+{
     balance += amount;
 };
-
