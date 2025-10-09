@@ -1,0 +1,49 @@
+A container is a class that stores and manages a collection of objects (elements).
+Key characteristics:
+
+- Stores multiple elements - holds a group of items, not just a single value
+- Manages memory - handles allocation, deallocation, and organization of its elements
+- Provides access methods - gives you ways to add, remove, and retrieve elements
+- Owns its data - responsible for the lifetime of the elements it contains
+
+Container Characteristics:
+SET
+
+Stores unique elements only
+Automatically sorted
+Fast lookup: O(log n)
+Use when: you need unique, sorted values
+
+MAP
+
+Stores key-value pairs
+Keys are unique and sorted
+Fast lookup by key: O(log n)
+Use when: you need to associate values with keys (like a dictionary)
+
+LIST
+
+Doubly-linked list
+Fast insertion/deletion anywhere: O(1)
+No random access (can't use list[i])
+Use when: you need frequent insertions/deletions in the middle
+
+STACK
+
+LIFO (Last In, First Out)
+Only access top element
+Built on top of deque by default
+Use when: undo functionality, expression evaluation, backtracking
+
+DEQUE (double-ended queue)
+
+Fast insertion/deletion at both ends
+Random access like vector
+Use when: you need a queue but also want random access
+
+QUEUE
+
+FIFO (First In, First Out)
+Only access front and back
+Built on top of deque by default
+Use when: task scheduling, breadth-first search

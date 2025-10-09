@@ -5,9 +5,12 @@
 
 using namespace std;
 
-class Account
+class Account // abstract class: a class with a pure virtual function
+              // limitation: no object of this class can be created
+              // when to define an abstract class: Whenever we need need a generic "boilerplate?" format for other classes. Prevents repeated code.
 {
-private:
+protected: // directly asscessible by member functions of this class
+           //  and th emember functions of its child classes
     string accountHolder;
     double balance; // 8 bytes
     // long account number; long: 4 byte or 8 byte depending on OS
@@ -20,6 +23,19 @@ public:
     ~Account();
     double getBalance() const;
     void setBalance(double);
-    virtual void withdraw(double);
+    virtual void withdraw(double) = 0; // pure virtual function
+                                       //   = 0; --> Account class does not define withdraw
+                                       //
     void deposit(double);
+
+    // Operator overloading
+    //  define an existing operator for a class the user defines
+    //  e.g., +, -, *, /, +=, -=, >>, <<, %
+    Account &operator+(double amount); // amount
+    bool operator<(const Account&);
+    operator double();//type conversion operator
+                    //--> no return type
+                    //operator type() : function name
+
+    friend ostream &operator<<(ostream &, const Account &account);
 };
