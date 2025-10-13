@@ -58,7 +58,9 @@ public:
     void loadFromFile(const std::string& filename); // destroys current and loads
     void saveTransactions(const std::string& filename) const;
     */
-
+   
+    //getter
+    string getLibraryName() const;
 };
 
 #endif

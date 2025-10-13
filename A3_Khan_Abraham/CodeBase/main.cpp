@@ -22,6 +22,13 @@
 #include <string>
 #include <iomanip>
 #include <vector>
+#include "Book.h"
+#include "DVD.h"
+#include "library.h"
+#include "LibraryItem.h"
+#include "magazine.h"
+#include "Member.h"
+#include "transaction.h"
 
 using namespace std;
 

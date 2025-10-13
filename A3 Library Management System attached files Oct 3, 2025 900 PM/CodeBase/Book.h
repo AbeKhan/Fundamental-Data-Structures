@@ -3,13 +3,17 @@
 
 #include <string>
 
-
-class Book {
+class Book
+{
+    std::string ID;
+    std::string title;
+    std::string author;
     std::string ISBN;
     std::string genre;
+    int year;
     int pageCount;
 
 public:
-
+    Book(std::string, std::string, std::string, int, std::string, std::string, int);
 };
 #endif
