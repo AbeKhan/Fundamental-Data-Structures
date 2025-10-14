@@ -1,10 +1,9 @@
 #include "Member.h"
 
 Member::Member(const std::string ID, const std::string nam, const std::string em,
-               const std::string phoneN, const std::vector<std::string> bItems,
-               double oFee, const std::string membership)
+               const std::string phoneN, const std::string membership)
     : memberID(ID), name(nam), email(em), phoneNumber(phoneN),
-      borrowedItems(bItems), outstandingFees(oFee), membershipType(membership) {}
+      membershipType(membership) {}
 
     std::string Member::getMemberID()
     {

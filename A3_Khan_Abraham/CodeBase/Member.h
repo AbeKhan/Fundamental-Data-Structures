@@ -18,7 +18,7 @@ private:
 
 public:
     Member(std::string ID, std::string nam, std::string em, std::string phoneN,
-           std::vector<std::string> bItems, double oFee, std::string membership);
+            std::string memberType);
 
     void borrowItem(std::string itemID);
     void returnItem(std::string itemID);

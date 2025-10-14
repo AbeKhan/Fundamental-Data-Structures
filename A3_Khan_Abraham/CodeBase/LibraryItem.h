@@ -4,7 +4,8 @@
 #include <string>
 #include <iostream>
 
-class LibraryItem {
+class LibraryItem
+{
 protected:
     std::string itemID;
     std::string title;
@@ -27,24 +28,26 @@ public:
     virtual std::string getItemType() const = 0;
 
     // (Convenience for operator+ deep copy)
-    virtual LibraryItem* clone() const = 0;
+    virtual LibraryItem *clone() const = 0;
 
     // Borrow/Return
-    void borrowItem(const std::string& memberID, const std::string& due);
+    void borrowItem(const std::string &memberID, const std::string &due);
     void returnItem();
 
     // Getters/Setters
-    const std::string& getItemID() const { return itemID; }
-    const std::string& getTitle()  const { return title; }
-    const std::string& getAuthor() const { return author; }
-    int  getPublicationYear() const { return publicationYear; }
+    const std::string &getItemID() const { return itemID; }
+    const std::string &getTitle() const { return title; }
+    const std::string &getAuthor() const { return author; }
+    int getPublicationYear() const { return publicationYear; }
     bool getIsAvailable() const { return isAvailable; }
-    const std::string& getBorrowedBy() const { return borrowedBy; }
-    const std::string& getDueDate() const { return dueDate; }
+    const std::string &getBorrowedBy() const { return borrowedBy; }
+    const std::string &getDueDate() const { return dueDate; }
 
-    void setTitle(const std::string& t) { title = t; }
-    void setAuthor(const std::string& a) { author = a; }
+    void setTitle(const std::string &t) { title = t; }
+    void setAuthor(const std::string &a) { author = a; }
     void setPublicationYear(int y) { publicationYear = y; }
+
+    friend std::ostream &operator<<(std::ostream &os, const LibraryItem &item);
 };
 
 #endif
