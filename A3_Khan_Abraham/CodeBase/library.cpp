@@ -4,7 +4,7 @@
 #include <iomanip>
 
 // Constructor
-Library::Library(std::string name) : libraryName(std::move(name)) {}
+//Library::Library(std::string name) : libraryName(std::move(name)) {}
 
 // Destructor
 Library::~Library()
@@ -22,6 +22,8 @@ void Library::addItem(LibraryItem *item)
 {
     items.push_back(item);
     itemCountByType[item->getItemType()]++;
+
+    std::cout << "✓ Item added successfully: " << item->getItemID() << std::endl;
 }
 
 void Library::removeItem(const std::string &itemID)
@@ -49,6 +51,7 @@ void Library::removeItem(const std::string &itemID)
 void Library::addMember(Member *member)
 {
     members.push_back(member);
+    std::cout << "✓ Member added successfully: " << member->getMemberID() << std::endl;
 }
 
 void Library::removeMember(const std::string &memberID)

@@ -108,5 +108,6 @@
     "streambuf": "cpp",
     "typeinfo": "cpp",
     "cstdarg": "cpp"
-  }
+  },
+  "C_Cpp.dimInactiveRegions": false
 }

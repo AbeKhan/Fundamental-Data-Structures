@@ -1,4 +1,4 @@
-#include <magazine.h>
+#include "Magazine.h"
 
 Magazine::Magazine(std::string id, std::string title, std::string author, int year, int in, std::string m) 
 : LibraryItem(id, title, author, year),  issueNumber(in), month(m) {}

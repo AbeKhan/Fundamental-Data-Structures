@@ -20,47 +20,57 @@ public:
         delete[] data;
     }
 
-    //Iterator class for separation of concern
+    // Iterator class for separation of concern
     class Iterator
     {
-        int* ptr; //address of a data item in the container class
+        int *ptr; // address of a data item in the container class
     public:
+        Iterator(int *data) : ptr(data) {}; //
 
-        Iterator(int* data) : ptr(data) {}; //
-
-        //return type: Interator*
-        //return type: Interator --> a new object --> ++it returns a new object --> losing the loop control variable
-        //  for (auto it = studentGrades.begin(); it != studentGrades.end(); ++it)
-        Iterator& operator++() //pre-increment must return the current object
+        // return type: Interator*
+        // return type: Interator --> a new object --> ++it returns a new object --> losing the loop control variable
+        //   for (auto it = studentGrades.begin(); it != studentGrades.end(); ++it)
+        // When to use a reference: only when a varaible the reference refers to exists
+        Iterator &operator++() // pre-increment must return the current object
         {
             ptr++;
             return *this; //
         }
-        Iterator& operator++(int)//post-increment
+
+        // it2 = it1++; x = 5, y = 6, y = x++; ==> y = 5, x = 6;
+        Iterator &operator++(int) // post-increment
         {
-
+            Iterator temp = *this;
+            ptr++;
+            return temp;
         }
-        int& operator*() //dereferencing
+        //*it ==> pull the value of the data item pointed by ptr of the iterator
+        // Why int& instead of int? ==> data intem already occupied a memory
+        //                         ==> don't want to create a new interger value
+        int &operator*() // dereferencing
         {
-
+            return *ptr;
         }
 
-
+        bool operator!=(Iterator&)
+        {
+            return this->ptr != rhs.pts;
+        }
     };
 
-    //container's method
+    // container's method
     Iterator begin()
     {
-        return Iterator(data); //accessing the priavte member of the container class
-                //--> Iterator's ptr = data
+        return Iterator(data); // accessing the priavte member of the container class
+                               //--> Iterator's ptr = data
     }
 
-    //container's method
+    // container's method
     Iterator end()
     {
-        return Iterator(data+size);
-               //--> Iterator's ptr = data + size 
-               //--> end(): pass the last element --> pointer to 4 bytes
-               //   --> invaild pointer from the container
+        return Iterator(data + size);
+        //--> Iterator's ptr = data + size
+        //--> end(): pass the last element --> pointer to 4 bytes
+        //   --> invaild pointer from the container
     }
 };

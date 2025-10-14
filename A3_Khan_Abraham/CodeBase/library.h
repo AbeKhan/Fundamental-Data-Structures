@@ -7,7 +7,7 @@
 #include <iostream>
 #include "LibraryItem.h"
 #include "Member.h"
-#include "Transaction.h"
+#include "transaction.h"
 
 class Library
 {
@@ -31,8 +31,8 @@ public:
 
     // Search
     LibraryItem *searchByID(const std::string &itemID) const;
-    LibraryItem *searchByTitle(const std::string &title) const;                 // optional
-    std::vector<LibraryItem *> searchByAuthor(const std::string &author) const; // optional
+    // LibraryItem *searchByTitle(const std::string &title) const;                 // optional
+    // std::vector<LibraryItem *> searchByAuthor(const std::string &author) const; // optional
     Member *findMember(const std::string &memberID) const;
 
     // Borrow/Return
@@ -40,13 +40,13 @@ public:
     void returnItem(const std::string &memberID, const std::string &itemID, int daysLate);
 
     // Display
-    void displayAllItems() const; // optional
+   // void displayAllItems() const; // optional
     void displayAvailableItems() const;
-    void displayBorrowedItems() const; // optional
+   // void displayBorrowedItems() const; // optional
     void displayMemberInfo(const std::string &memberID) const;
 
     // Reporting
-    void generateReport() const; // optonal
+  //  void generateReport() const; // optonal
 
     // Operators
     Library operator+(const Library &rhs) const; // deep-merge (items/members cloned)
