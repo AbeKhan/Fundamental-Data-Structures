@@ -28,15 +28,15 @@ LibraryItem *Book::clone() const
 }
 
 std::ostream& operator<<(std::ostream& os, const Book& b) {
-    os << "Book Info:\n"
+    os << "Type: Book\n"
        << "ID: " << b.getItemID() << "\n"
        << "Title: " << b.getTitle() << "\n"
        << "Author: " << b.getAuthor() << "\n"
-       << "Year: " << b.getPublicationYear() << "\n"
        << "ISBN: " << b.ISBN << "\n"
        << "Genre: " << b.genre << "\n"
        << "Pages: " << b.pageCount << "\n"
-       << "Available: " << (b.getIsAvailable() ? "Yes" : "No") << "\n";
+       << "Publication Year: " << b.getPublicationYear() << "\n"
+       << "Status: " << (b.getIsAvailable() ? "Available" : "Not Available") << "\n";
     if (!b.getIsAvailable()) {
         os << "Borrowed By: " << b.getBorrowedBy() << "\n"
            << "Due Date: " << b.getDueDate() << "\n";

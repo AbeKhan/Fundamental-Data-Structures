@@ -13,10 +13,10 @@ class Transaction {
     double feesPaid;
 
 public:
-    Transaction(std::string tid, std::string mid, std::string iid, std::string type,
-                std::string date, double feesPaid = 0.0)
-        : transactionID(std::move(tid)), memberID(std::move(mid)), itemID(std::move(iid)),
-          transactionType(std::move(type)), date(std::move(date)), feesPaid(feesPaid) {}
+    Transaction(std::string mid, std::string iid, std::string type,
+                std::string date)
+        : memberID(std::move(mid)), itemID(std::move(iid)),
+          transactionType(std::move(type)), date(std::move(date)) {}
 
     void displayTransaction() const;
     const std::string& getMemberID() const { return memberID; }

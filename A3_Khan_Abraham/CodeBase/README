@@ -1,0 +1,7 @@
+In VSC please open folder A3_Khan_Abraham and right-click CodeBase and open in "Integrated Terminal".
+
+In the terminal, type "make" and then enter, this will then complier all the cpp files into an executable.
+
+Afterwards type in "./a.exe" and hit enter, this will then run the program.
+
+Note: The program does not take any user inputs.

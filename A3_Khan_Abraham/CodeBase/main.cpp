@@ -188,7 +188,7 @@ int main()
      cout << "Calling displayInfo() on LibraryItem* pointers" << endl;
      cout << "Each derived class (Book/Magazine/DVD) shows different behavior!" << endl;
 
-     // library.displayAllItems();
+     library.displayAllItems();
 
      // ========================================================================
      // STEP 7: SEARCH DEMONSTRATIONS

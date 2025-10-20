@@ -40,7 +40,7 @@ public:
     void returnItem(const std::string &memberID, const std::string &itemID, int daysLate);
 
     // Display
-   // void displayAllItems() const; // optional
+    void displayAllItems() const; // optional
     void displayAvailableItems() const;
    // void displayBorrowedItems() const; // optional
     void displayMemberInfo(const std::string &memberID) const;

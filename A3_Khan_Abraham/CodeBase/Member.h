@@ -26,6 +26,7 @@ public:
     void displayMemberInfo() const;
 
     std::string getMemberID();
+    std::string getName() const;
 
     Member& operator+=(double amount);  // Add to fees
     Member& operator-=(double amount);  // Subtract from fees

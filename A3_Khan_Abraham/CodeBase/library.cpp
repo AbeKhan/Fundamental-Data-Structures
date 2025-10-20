@@ -4,7 +4,7 @@
 #include <iomanip>
 
 // Constructor
-//Library::Library(std::string name) : libraryName(std::move(name)) {}
+// Library::Library(std::string name) : libraryName(std::move(name)) {}
 
 // Destructor
 Library::~Library()
@@ -74,8 +74,9 @@ void Library::removeMember(const std::string &memberID)
     }
 }
 
-// Search
-LibraryItem *Library::searchByID(const std::string &itemID) const
+
+    // Search
+    LibraryItem *Library::searchByID(const std::string &itemID) const
 {
     for (auto item : items)
     {
@@ -126,9 +127,11 @@ void Library::borrowItem(const std::string &memberID, const std::string &itemID,
     member->borrowItem(itemID); // adds itemID to member's borrowed list
 
     // Log transaction
-    //  transactions.push_back(new Transaction(memberID, itemID, "BORROW", dueDate));
+    transactions.push_back(new Transaction(memberID, itemID, "BORROW", dueDate));
 
-    std::cout << "Item " << itemID << " successfully borrowed by member " << memberID << ".\n";
+    std::cout << " Member: " << member->getName() << "(" << memberID << ")" << std::endl
+    << " Item:" << item->getTitle() << "(" << itemID << ")" << std::endl
+    << " Due Date: " << dueDate << std::endl;
 }
 
 void Library::returnItem(const std::string &memberID, const std::string &itemID,
@@ -167,6 +170,14 @@ void Library::displayAvailableItems() const
         {
             std::cout << *item << "\n";
         }
+    }
+}
+
+void Library::displayAllItems() const
+{
+    for (auto item : items)
+    {
+        item->displayInfo();
     }
 }
 
