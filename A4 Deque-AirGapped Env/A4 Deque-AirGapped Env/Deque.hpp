@@ -30,8 +30,8 @@ public:
     void pop_back();
     int at(int);
 
-    std::string front();
-    std::string back();
+    int front();
+    int back();
 
     int size() const;
 
