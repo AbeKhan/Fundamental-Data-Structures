@@ -1,10 +1,11 @@
 #pragma once
 
+#include <string>
 
 class Deque
 {
 
-    private:
+private:
     class node
     {
     public:
@@ -14,23 +15,29 @@ class Deque
         node(int);
         ~node(); // placeholder
     };
-    node* pfront;
-    node* pback;
+    node *pfront;
+    node *pback;
     int length;
 
-    public:
+public:
     Deque(int const);
     ~Deque(); // placeholder
 
-    int push_back();
-    int push_front();
+    int push_back(int);
+    int push_front(int);
 
     void pop_front();
     void pop_back();
+    int at(int);
+
+    std::string front();
+    std::string back();
 
     int size() const;
 
-    erase();
-    
+    void erase(int);
+    void insert(int, int); //position and values
 
+    int begin();
+    int end();
 };
