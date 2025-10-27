@@ -1,16 +1,16 @@
 #include "Deque.hpp"
 
 // Deque functions start
-Deque::Deque(int len) : length(len), pfront(nullptr), pback(nullptr) {}
+Deque::Deque() : length(-1), pfront(nullptr), pback(nullptr) {}
 
 // Node functions start
-Deque::node::node(int d) : data(d), next(nullptr), prev(nullptr) {}
+Deque::Node::Node(int d) : data(d), next(nullptr), prev(nullptr) {}
 
 int Deque::push_back(int data)
 {
     if (length == 0)
     {
-        node *n = new node(data);
+        Node *n = new Node(data);
 
         pfront = pback = n;
 
@@ -19,7 +19,7 @@ int Deque::push_back(int data)
     else if (length == 1)
     {
 
-        node *n = new node(data);
+        Node *n = new Node(data);
 
         pback = n;
         pfront->next = pback;
@@ -29,7 +29,7 @@ int Deque::push_back(int data)
     }
     else
     {
-        node *n = new node(data);
+        Node *n = new Node(data);
 
         pback->prev = pback;
         pback = n;
@@ -43,7 +43,7 @@ int Deque::push_front(int data)
 {
     if (length == 0)
     {
-        node *n = new node(data);
+        Node *n = new Node(data);
 
         pfront = pback = n;
 
@@ -52,7 +52,7 @@ int Deque::push_front(int data)
     else if (length == 1)
     {
 
-        node *n = new node(data);
+        Node *n = new Node(data);
 
         pback = n;
         pfront->next = pback;
@@ -63,11 +63,10 @@ int Deque::push_front(int data)
     else
     {
         // change for push_front
-        node *n = new node(data);
+        Node *n = new Node(data);
 
-        pback->prev = pback;
-        pback = n;
-        pfront->next = pback;
+        n->next = pfront;
+        pfront = n;
 
         delete n;
     }
@@ -94,5 +93,11 @@ int Deque::size() const
 void erase(int);
 void insert(int, int); // position and values
 
-int begin(); //Iterator class? Review and check how to impliment.
+Iterator Deque::begin() // Iterator class? Review and check how to impliment.
+{
+    Iterator it;
+    it.position = pfront;
+    it.container = this;
+    return it;
+} 
 int end();

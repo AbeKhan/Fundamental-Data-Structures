@@ -1,26 +1,20 @@
 #pragma once
 
 #include <string>
+#include "Node.hpp"
+#include "Iterator.hpp"
 
 class Deque
 {
 
 private:
-    class node
-    {
-    public:
-        int data;
-        node *next;
-        node *prev;
-        node(int);
-        ~node(); // placeholder
-    };
-    node *pfront;
-    node *pback;
+    Node *pfront;
+    Node *pback;
     int length;
+    friend class Iterator;
 
 public:
-    Deque(int const);
+    Deque();
     ~Deque(); // placeholder
 
     int push_back(int);
@@ -35,9 +29,9 @@ public:
 
     int size() const;
 
-    void erase(int);
-    void insert(int, int); //position and values
-
-    int begin();
-    int end();
+    Iterator erase(int);
+    // Iterator insert(int, int); // position and values ??
+    Iterator insert(Iterator, int); // position and values ??
+    Iterator begin();
+    Iterator end();
 };

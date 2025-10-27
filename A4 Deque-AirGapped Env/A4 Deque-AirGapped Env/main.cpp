@@ -15,19 +15,20 @@
 #include <sstream>
 #include <cassert>
 #include <initializer_list>
-// #include "Deque.hpp"  // <-- Your non-template Deque<int> implementation
-// Not sure about hpp file, check this later
-#include "Deque.hpp" // <-- Your non-template Deque<int> implementation
+#include "Deque.hpp"  // <-- Your non-template Deque<int> implementation
 
 using namespace std;
 
 /*------------------ Stream operators for Deque (int) ------------------*/
 ostream &operator<<(ostream &os, const Deque &dq)
 {
+    
+
 }
 
 istream &operator>>(istream &is, Deque &dq)
 {
+    
 }
 
 /*------------------ Helper ------------------*/
@@ -45,6 +46,7 @@ void basic_demo()
     dq.push_back(10);
     dq.push_back(20);
     dq.push_front(5);
+    
     dq.push_front(1);
 
     printDeque(dq, "After pushes:");
