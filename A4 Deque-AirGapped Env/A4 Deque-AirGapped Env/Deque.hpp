@@ -29,9 +29,8 @@ public:
 
     int size() const;
 
-    Iterator erase(int);
-    // Iterator insert(int, int); // position and values ??
-    Iterator insert(Iterator, int); // position and values ??
+    Iterator erase(Iterator);
+    void insert(Iterator, int); // position and values ??
     Iterator begin();
     Iterator end();
 };
