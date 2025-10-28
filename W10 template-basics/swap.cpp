@@ -3,9 +3,12 @@
 
 using namespace std;
 
-template <typename T> // T: simple a symbol --> you can use anything as a symbol
+
+
+
+//template <typename T> // T: simple a symbol --> you can use anything as a symbol
                       // template prefix
-T myswap(T, T);
+//T myswap(T, T);
 
 // template <typename T> T max(T, T); prototype
 

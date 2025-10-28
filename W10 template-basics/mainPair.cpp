@@ -2,6 +2,7 @@
 #include "pair.hpp"
 
 using namespace std;
+using namespace MyNameSpace;
 
 int main()
 {
