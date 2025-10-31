@@ -15,20 +15,24 @@
 #include <sstream>
 #include <cassert>
 #include <initializer_list>
-#include "Deque.hpp"  // <-- Your non-template Deque<int> implementation
+#include "Deque.hpp" // <-- Your non-template Deque<int> implementation
 
 using namespace std;
 
 /*------------------ Stream operators for Deque (int) ------------------*/
 ostream &operator<<(ostream &os, const Deque &dq)
 {
-    
-
+    for (int i = 0; i < dq.size(); i++)
+    {
+        os << (dq.begin() + i).get() << " ";
+    }
 }
 
 istream &operator>>(istream &is, Deque &dq)
 {
-    
+    dq.push_back(is);
+
+    // return and check
 }
 
 /*------------------ Helper ------------------*/
@@ -46,7 +50,7 @@ void basic_demo()
     dq.push_back(10);
     dq.push_back(20);
     dq.push_front(5);
-    
+
     dq.push_front(1);
 
     printDeque(dq, "After pushes:");
@@ -62,7 +66,6 @@ void basic_demo()
     // Insert  in the middle using an iterator
     // Inset 100 into the deque before the element at position dq.begin() + 1
     // Effect: The new element becomes the second element in the deque
-
     dq.insert(dq.begin() + 1, 100);
 
     // erase in the middle using an iterator
@@ -86,6 +89,8 @@ void test_copy_constructor()
     cout << "\n[TEST] Copy constructor\n";
     Deque a{1, 2, 3}; // assumes initializer_list ctor
 
+    Deque b = a;
+
     // fill in the blank
 
     assert(b.size() == 3);
@@ -99,6 +104,8 @@ void test_copy_assignment()
     Deque a{10, 20, 30, 40};
 
     // fill this section with the necessary code
+
+    Deque c = a;
 
     printDeque(a, "a:");
     printDeque(c, "c (assigned from a):");

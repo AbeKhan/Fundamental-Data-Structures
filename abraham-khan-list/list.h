@@ -1,6 +1,6 @@
 #pragma once
-#include <initializer_list>
-class Deque
+
+class list
 {
 private:
 	class node
@@ -20,7 +20,7 @@ public:
 	{
 	private:
 		node *pos;
-		const Deque *container;
+		const list *container;
 
 	public:
 		iterator();
@@ -30,15 +30,13 @@ public:
 		void operator++();
 		void prev();
 		void operator--();
-		bool equals(Deque::iterator) const;
-		bool operator==(Deque::iterator) const;
-		bool operator!=(Deque::iterator) const;
-		Deque::iterator operator+(int const);
-		friend class Deque;
+		bool equals(list::iterator) const;
+		bool operator==(list::iterator) const;
+		bool operator!=(list::iterator) const;
+		friend class list;
 	};
-	Deque();
-	Deque(initializer_list);
-	~Deque();
+	list();
+	~list();
 	int size() const;
 	int front() const;
 	int back() const;
@@ -48,8 +46,6 @@ public:
 	void pop_back();
 	iterator begin() const;
 	iterator end() const;
-	void insert(iterator, int);
-	void erase(iterator);
-
-	int at(int);
+	void insert(iterator &, int);
+	void erase(iterator &);
 };

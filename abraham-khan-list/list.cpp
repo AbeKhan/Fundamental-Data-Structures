@@ -1,11 +1,11 @@
 #include <cassert>
-#include "Deque.hpp"
+#include "list.h"
 
 using namespace std;
 
-Deque::Deque() : head(nullptr), tail(nullptr), count(0) {}
+list::list() : head(nullptr), tail(nullptr), count(0) {}
 
-Deque::~Deque()
+list::~list()
 {
 	while (count > 0)
 	{
@@ -13,36 +13,23 @@ Deque::~Deque()
 	}
 }
 
-Deque::node::node(int d) : data(d), next(nullptr), prev(nullptr) {}
+list::node::node(int d) : data(d), next(nullptr), prev(nullptr) {}
 
-Deque::iterator::iterator() : pos(nullptr), container(nullptr) {}
+list::iterator::iterator() : pos(nullptr), container(nullptr) {}
 
-//**** start == Deque::iteratpr member function
-int Deque::iterator::get() const
+//**** start == list::iteratpr member function
+int list::iterator::get() const
 {
 	assert(pos != nullptr);
 	return pos->data;
 }
 
-int Deque::at(int nPos) 
+int list::iterator::operator*() const
 {
-	assert(count >= nPos);
-	node* n;
-	n = head;
-	for(int i = 0; i < nPos; i++)
-	{
-		n = n->next;
-	}
-
-	return n->data;
+	return list::iterator::get();
 }
 
-int Deque::iterator::operator*() const
-{
-	return Deque::iterator::get();
-}
-
-void Deque::iterator::next()
+void list::iterator::next()
 {
 	if (pos == nullptr)
 	{
@@ -54,22 +41,12 @@ void Deque::iterator::next()
 	}
 }
 
-void Deque::iterator::operator++()
+void list::iterator::operator++()
 {
-	return Deque::iterator::next();
+	return list::iterator::next();
 }
 
-Deque::iterator Deque::iterator::operator+(int const val)
-{
-	for(int i = 0; i < val; i++)
-	{
-		next();
-	}
-
-	return *this;
-}
-
-void Deque::iterator::prev()
+void list::iterator::prev()
 {
 	if (pos == nullptr)
 	{
@@ -81,45 +58,45 @@ void Deque::iterator::prev()
 	}
 }
 
-void Deque::iterator::operator--()
+void list::iterator::operator--()
 {
-	return Deque::iterator::prev();
+	return list::iterator::prev();
 }
 
-bool Deque::iterator::equals(Deque::iterator iter) const
+bool list::iterator::equals(list::iterator iter) const
 {
 	return container == iter.container && pos == iter.pos;
 }
 
-bool Deque::iterator::operator==(Deque::iterator iter) const
+bool list::iterator::operator==(list::iterator iter) const
 {
-	return Deque::iterator::equals(iter);
+	return list::iterator::equals(iter);
 }
 
-bool Deque::iterator::operator!=(Deque::iterator iter) const
+bool list::iterator::operator!=(list::iterator iter) const
 {
-	return !Deque::iterator::equals(iter);
+	return !list::iterator::equals(iter);
 }
-//**** end === Deque::iteratpr member function
+//**** end === list::iteratpr member function
 
-int Deque::size() const
+int list::size() const
 {
 	return count;
 }
 
-int Deque::front() const
+int list::front() const
 {
 	assert(count > 0);
 	return head->data;
 }
 
-int Deque::back() const
+int list::back() const
 {
 	assert(count > 0);
 	return tail->data;
 }
 
-void Deque::push_front(int data)
+void list::push_front(int data)
 {
 	node *p = new node(data);
 	if (count == 0)
@@ -135,7 +112,7 @@ void Deque::push_front(int data)
 	++count;
 }
 
-void Deque::push_back(int data)
+void list::push_back(int data)
 {
 	node *p = new node(data);
 	if (count == 0)
@@ -151,7 +128,7 @@ void Deque::push_back(int data)
 	++count;
 }
 
-void Deque::pop_front()
+void list::pop_front()
 {
 	assert(count > 0);
 	if (count == 1)
@@ -169,7 +146,7 @@ void Deque::pop_front()
 	--count;
 }
 
-void Deque::pop_back()
+void list::pop_back()
 {
 	assert(count > 0);
 	if (count == 1)
@@ -187,7 +164,7 @@ void Deque::pop_back()
 	--count;
 }
 
-Deque::iterator Deque::begin() const
+list::iterator list::begin() const
 {
 	iterator it;
 	it.pos = head;
@@ -195,7 +172,7 @@ Deque::iterator Deque::begin() const
 	return it;
 }
 
-Deque::iterator Deque::end() const
+list::iterator list::end() const
 {
 	iterator it;
 	it.pos = nullptr;
@@ -203,7 +180,7 @@ Deque::iterator Deque::end() const
 	return it;
 }
 
-void Deque::insert(iterator it, int data)
+void list::insert(iterator &it, int data)
 {
 	if (it.pos == nullptr)
 	{
@@ -227,11 +204,11 @@ void Deque::insert(iterator it, int data)
 		p->next = right;
 		right->prev = p;
 		it.pos = p;
+		++count;
 	}
-	++count;
 }
 
-void Deque::erase(iterator it)
+void list::erase(iterator &it)
 {
 	assert(it.pos != nullptr);
 	if (count == 1)
