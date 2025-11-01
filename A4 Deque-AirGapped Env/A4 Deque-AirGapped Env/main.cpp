@@ -26,13 +26,15 @@ ostream &operator<<(ostream &os, const Deque &dq)
     {
         os << (dq.begin() + i).get() << " ";
     }
+	return os;
 }
 
 istream &operator>>(istream &is, Deque &dq)
 {
-    dq.push_back(is);
-
-    // return and check
+	int N;
+    is >> N;
+	dq.push_back(N);
+	return is;
 }
 
 /*------------------ Helper ------------------*/
@@ -47,32 +49,32 @@ void basic_demo()
     Deque dq; // empty
 
     // Inserts at both ends
-    dq.push_back(10);
-    dq.push_back(20);
-    dq.push_front(5);
+    dq.push_back(10); // 10
+    dq.push_back(20); // 10 20
+    dq.push_front(5); // 5 10 20
 
-    dq.push_front(1);
+    dq.push_front(1); // 1 5 10 20
 
     printDeque(dq, "After pushes:");
-    cout << "front=" << dq.front()
-         << " back=" << dq.back()
-         << " at(2)=" << dq.at(2) << "\n";
+    cout << "front= " << dq.front()
+         << " back= " << dq.back()
+         << " at(2)= " << dq.at(2) << "\n"; // 5
 
     // Deletes at both ends
-    dq.pop_front();
-    dq.pop_back();
+    dq.pop_front(); // 5 10 20
+    dq.pop_back(); // 5 10 
     printDeque(dq, "After pops:");
 
     // Insert  in the middle using an iterator
     // Inset 100 into the deque before the element at position dq.begin() + 1
     // Effect: The new element becomes the second element in the deque
-    dq.insert(dq.begin() + 1, 100);
+    dq.insert(dq.begin() + 1, 100); // 5 100 10
 
     // erase in the middle using an iterator
     // removes the element at the position indicated by dq.begin(), i.e., the first element.
     // effect: all subsequent elements are shifted forward to fill the gap.
     dq.erase(dq.begin());
-    printDeque(dq, "After insert+erase:");
+    printDeque(dq, "After insert+erase:"); // 100 10
 
     // Manual iteration (iterator support assumed)
     cout << "Iterating: ";
@@ -89,7 +91,7 @@ void test_copy_constructor()
     cout << "\n[TEST] Copy constructor\n";
     Deque a{1, 2, 3}; // assumes initializer_list ctor
 
-    Deque b = a;
+	Deque b(a);
 
     // fill in the blank
 
@@ -128,6 +130,7 @@ void test_stream_extraction_ints()
     cout << "\n[TEST] operator>> (istream) with ints\n";
     Deque d;
     // fill this sectin with the necessary code
+	cin >> d;
     assert(d.size() == 5);
     assert(d[0] == 10 && d[1] == 20 && d[2] == 30 && d[3] == 40 && d[4] == 50);
     cout << "operator>> (ints) OK\n";

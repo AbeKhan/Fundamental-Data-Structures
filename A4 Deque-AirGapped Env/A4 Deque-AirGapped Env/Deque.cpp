@@ -1,9 +1,26 @@
 #include <cassert>
+#include <initializer_list>
 #include "Deque.hpp"
+
 
 using namespace std;
 
 Deque::Deque() : head(nullptr), tail(nullptr), count(0) {}
+
+Deque::Deque(initializer_list<int> data)
+{
+	for (int d : data)
+	{
+		push_back(d);
+	}
+}
+
+Deque::Deque(const Deque &old)
+{
+	head = old.head;
+	tail = old.tail;
+	count = old.count;
+}
 
 Deque::~Deque()
 {
@@ -24,12 +41,12 @@ int Deque::iterator::get() const
 	return pos->data;
 }
 
-int Deque::at(int nPos) 
+int Deque::at(int nPos)
 {
 	assert(count >= nPos);
-	node* n;
+	node *n;
 	n = head;
-	for(int i = 0; i < nPos; i++)
+	for (int i = 0; i < nPos; i++)
 	{
 		n = n->next;
 	}
@@ -61,7 +78,7 @@ void Deque::iterator::operator++()
 
 Deque::iterator Deque::iterator::operator+(int const val)
 {
-	for(int i = 0; i < val; i++)
+	for (int i = 0; i < val; i++)
 	{
 		next();
 	}
@@ -267,4 +284,9 @@ void Deque::erase(iterator it)
 		it.pos = right;
 	}
 	--count;
+}
+
+int Deque::operator[](int nPos)
+{
+	return at(nPos);
 }

@@ -1,10 +1,10 @@
-a.exe: list.o main.o
-	g++ -g list.o main.o
+a.exe: Deque.o main.o
+	g++ -g Deque.o main.o
 
-list.o: list.cpp list.h
-	g++ -c -g list.cpp
+Deque.o: Deque.cpp Deque.hpp
+	g++ -c -g Deque.cpp
 
-main.o: list.h main.cpp
+main.o: Deque.hpp main.cpp
 	g++ -c -g main.cpp
 
 clean:

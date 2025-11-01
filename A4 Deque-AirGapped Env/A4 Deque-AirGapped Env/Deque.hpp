@@ -37,7 +37,9 @@ public:
 		friend class Deque;
 	};
 	Deque();
-	Deque(initializer_list);
+	Deque(std::initializer_list<int>);
+	Deque(const Deque &);
+
 	~Deque();
 	int size() const;
 	int front() const;
@@ -52,4 +54,5 @@ public:
 	void erase(iterator);
 
 	int at(int);
+	int operator[](int);
 };
