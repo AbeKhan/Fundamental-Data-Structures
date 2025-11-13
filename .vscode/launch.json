@@ -39,8 +39,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/abrah/OneDrive/Documents/GitHub/Fundamental-Data-Structures/A4 Deque-AirGapped Env/A4 Deque-AirGapped Env",
-      "program": "c:/Users/abrah/OneDrive/Documents/GitHub/Fundamental-Data-Structures/A4 Deque-AirGapped Env/A4 Deque-AirGapped Env/build/Debug/outDebug",
+      "cwd": "c:/Users/abrah/OneDrive/Documents/GitHub/Fundamental-Data-Structures/testing",
+      "program": "c:/Users/abrah/OneDrive/Documents/GitHub/Fundamental-Data-Structures/testing/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
