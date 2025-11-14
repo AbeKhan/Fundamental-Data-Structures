@@ -1,10 +1,13 @@
 #ifndef BINARYTREE_H
 #define BINARYTREE_H
+#include "BinaryNode.h"
+
 template <typename T>
 class BinaryTree
 {
 //private:
 protected:  //child class can directly access protected members of its parent
+BinaryNode<T>* root;
     
 
 public:
