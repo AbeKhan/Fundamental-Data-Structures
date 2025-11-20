@@ -6,7 +6,10 @@
 template <typename T>
 class BinarySearchTree : public BinaryTree<T>
 {
-
+public:
+	void insert(T&);
+protected:
+	Error_code_recursie_insert(BinaryNode<T>*, T);
 };
 
 #endif

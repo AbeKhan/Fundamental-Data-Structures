@@ -12,7 +12,7 @@ class BinaryTree {
 public:
    BinaryTree();
    bool empty() const;
-   void preorder(void (*visit)(Object&));
+   void preorder(void (*visit)(Object&)); //vist: functionpointer to apply the function to an object stored in a binary
    void inorder(void (*visit)(Object&));
    void postorder(void (*visit)(Object&));
 

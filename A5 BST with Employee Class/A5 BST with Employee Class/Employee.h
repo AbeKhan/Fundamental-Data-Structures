@@ -21,25 +21,25 @@ protected:
 public:
 
     Employee();
-    Employee(vector<string>&);
+    Employee(vector<string>&); //parse an entry of Employee DB into strings; push back each string to a vector
     //Employee(const Employee&); optional
     ~Employee();
     //Employee& operator=(const Employee&); optional
 
     string getName() const;
-    void   setName(string, string);
+    void   setName(string&, string&);
 
     string getSSN() const;
-    void   setSSN(string);
+    void   setSSN(string&);
 
     string getDept() const;
-    void   setDept(string);
+    void   setDept(string&);
 
     string getEmpCode() const;
-    void   setEmpCode(string);
+    void   setEmpCode(string&);
 
     string   getRole() const;
-    void     setRole(string);
+    void     setRole(string&);
 
     double   getSalary() const;
     void     setSalary(double);

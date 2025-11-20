@@ -28,7 +28,7 @@ string Employee::getEmpCode() const
     return code;
 }
 
-void Employee::setEmpCode(string newCode)
+void Employee::setEmpCode(string& newCode)
 {
     code = newCode;
 }
@@ -38,7 +38,7 @@ string Employee::getName() const
     return last + "," + first;
 }
 
-void Employee::setName(string first, string last)
+void Employee::setName(string& first, string& last)
 {
     this->first = first;
     this->last = last;
@@ -49,7 +49,7 @@ string Employee::getSSN() const
     return ssn;
 }
 
-void Employee::setSSN(string ssn)
+void Employee::setSSN(string& ssn)
 {
     this->ssn = ssn;
 }
@@ -59,7 +59,7 @@ string Employee::getDept() const
     return department;
 }
 
-void Employee::setDept(string dept)
+void Employee::setDept(string& dept)
 {
     this->department = dept;
 }
@@ -70,7 +70,7 @@ string Employee::getRole() const
     return role;
 }
 
-void Employee::setRole(string role)
+void Employee::setRole(string& role)
 {
     this->role = role;
 }

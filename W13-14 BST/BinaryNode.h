@@ -2,12 +2,12 @@
 
 template <typename T>
 
-struct Node{
+struct Node
+{
 	T data;
-	Node<T>* left;
-	Node<T>* right;
+	Node<T> *left;
+	Node<T> *right;
 
-
-template <typename T>
-Node(T val) : data(val), left(nullptr), right(nullptr) {}
+	template <typename T>
+	Node(T val) : data(val), left(nullptr), right(nullptr) {}
 };
