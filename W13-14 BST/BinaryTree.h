@@ -24,6 +24,7 @@ public:
 	void print() const; // A method to print out the tree using preorder
 
 	// Big Three: copy constructor, operator=(), destructor
+	BinaryTree();
 	BinaryTree(const BinaryTree<T> &original);
 	BinaryTree<T> &operator=(const BinaryTree<T> &original);
 	~BinaryTree();
@@ -64,7 +65,7 @@ Uses: The function recursive_copy
 }
 
 template <typename T>
-BinaryTree<T>::BinaryTree<T>recursive_copy(const BinaryTree<T>* sub_root)
+BinaryTree<T>:: BinaryTree<T> recursive_copy(const BinaryTree<T>* sub_root)
 {
 	//V-L-R: construct a binary tree
 		BinaryNode<T>* parent = new BinaryNode(sub_root->data);
@@ -232,7 +233,7 @@ Post: The number of entries in the subtree is returned.
 Uses: The function recursive_size recursively
 */
 {
-	;
+	
 }
 
 template <typename T>
@@ -243,6 +244,7 @@ Post: All the nodes in the subtree are disposed of in postorder.
 Uses: The function recursive_clear recursively
 */
 {
+
 }
 
 template <typename T>

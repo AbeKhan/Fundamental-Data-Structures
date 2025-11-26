@@ -1,7 +1,6 @@
 #pragma once
 
 template <typename T>
-
 struct Node
 {
 	T data;
@@ -9,5 +8,5 @@ struct Node
 	Node<T> *right;
 
 	template <typename T>
-	Node(T val) : data(val), left(nullptr), right(nullptr) {}
+	Node(T val) : data(val), left(nullptr), right(nullptr) {};
 };
