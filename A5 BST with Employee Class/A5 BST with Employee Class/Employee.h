@@ -22,9 +22,9 @@ public:
 
     Employee();
     Employee(vector<string>&); //parse an entry of Employee DB into strings; push back each string to a vector
-    //Employee(const Employee&); optional
+    Employee(const Employee& right); // optional
     ~Employee();
-    //Employee& operator=(const Employee&); optional
+    Employee& operator=(const Employee&); //optional
 
     string getName() const;
     void   setName(string&, string&);
