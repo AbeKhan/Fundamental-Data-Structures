@@ -13,7 +13,7 @@ class BinaryTree
 public:
    BinaryTree();
    bool empty() const;
-   void preorder(void (*visit)(Object &)); // vist: functionpointer to apply the function to an object stored in a binary
+   void preorder(void (*visit)(Object &));
    void inorder(void (*visit)(Object &));
    void postorder(void (*visit)(Object &));
 
@@ -23,7 +23,12 @@ public:
 
    void print() const; // A method to print out the tree using preorder
 
-   BinaryTree();
+   // functions added
+   void insert(const Key &key, const Object &obj)
+   {
+      root = insert(root, key, obj);
+   }
+
    // Big Three: copy constructor, operator=(), destructor
    BinaryTree(const BinaryTree<Key, Object> &original);
    BinaryTree<Key, Object> &operator=(const BinaryTree<Key, Object> &original);
@@ -40,6 +45,9 @@ protected:
    BinaryNode<Key, Object> *recursive_copy(BinaryNode<Key, Object> *sub_root);
 
    void recursive_preorder_print_node(BinaryNode<Key, Object> *sub_root) const;
+
+   // Fuctions added
+   BinaryNode<Key, Object> *insert(BinaryNode<Key, Object> *r, int data);
 
    // Data member
    BinaryNode<Key, Object> *root;
@@ -112,6 +120,7 @@ Post: The tree has been traversed in inorder sequence.
 Uses: The function recursive_inorder
 */
 {
+   r
 }
 
 template <typename Key, typename Object>
@@ -271,6 +280,25 @@ Uses: The function recursive_preorder_print_node recursively
       recursive_preorder_print_node(sub_root->left);
       recursive_preorder_print_node(sub_root->right);
    }
+}
+
+// functions added
+template <typename Key, typename Object>
+BinaryNode<Key, Object> *insert(BinaryNode<Key, Object> *r, const Key &key, const Object &obj)
+{
+   if (r == nullptr)
+   {
+      r = new BinaryNode<Key, Object>(key, obj);
+   }
+   else if (key < r->key)
+   {
+      r->left = insert(r->left, key, obj);
+   }
+   else if (key > r->key)
+   {
+      r->right = insert(r->right, key, obj);
+   }
+   return r;
 }
 
 #endif

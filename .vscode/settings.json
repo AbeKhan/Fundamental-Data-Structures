@@ -61,6 +61,13 @@
     "initializer_list": "cpp",
     "iostream": "cpp",
     "functional": "cpp",
-    "system_error": "cpp"
+    "system_error": "cpp",
+    "iomanip": "cpp",
+    "array": "cpp",
+    "string": "cpp",
+    "string_view": "cpp",
+    "deque": "cpp",
+    "list": "cpp",
+    "vector": "cpp"
   }
 }
