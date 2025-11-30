@@ -103,6 +103,8 @@ Employee &Employee::operator=(const Employee &right)
     department = right.department;
     role = right.role;
     salary = right.salary;
+
+	return *this;
 }
 
 Employee::Employee(const Employee& right)
@@ -120,4 +122,6 @@ ostream &operator<<(ostream &out, const Employee &employee)
         << "Department: " << employee.department << endl
         << "Role: " << employee.role << endl
         << "Salary: " << employee.salary << endl;
+
+		return out;
 }

@@ -38,30 +38,35 @@ int main()
                 temp.setSSN(value);
 
                 string first, last;
-                cout << "Enter an first name:";
+                cout << "Enter an first name: ";
                 cin >> first;
 
-                cout << "Enter an first name:";
+                cout << "Enter an last name: ";
                 cin >> last;
                 temp.setName(first, last);
 
-                cout << "Enter an department : ";
+                cout << "Enter an department: ";
                 cin >> value;
                 temp.setDept(value);
 
-                cout << "Enter an role : ";
+                cout << "Enter an role: ";
                 cin >> value;
                 temp.setRole(value);
 
-                cout << "Enter an salary : ";
+                cout << "Enter an salary: ";
                 cin >> value;
                 temp.setSalary(stoi(value));
+
+				
 
                 if (value != "q")
                 {
                     bst.insert(temp.getSSN(), temp);
                     bst.print();
                 }
+
+				cout << "Enter an q to quit, if not, enter any key to contuine. " << endl;
+                cin >> value;
             }
         }
         else if (input == "r")
