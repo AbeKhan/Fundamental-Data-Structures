@@ -9,3 +9,6 @@ Employee.o: Employee.cpp Employee.h
 
 clean:
 	rm *.o *.exe
+
+zip:
+	zip A5_Khan_Abraham *.h *cpp Makefile *.txt
