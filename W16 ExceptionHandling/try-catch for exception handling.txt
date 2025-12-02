@@ -1,0 +1,102 @@
+
+========== What are exceptions? =============
+Exceptions are runtime errors or unexpected conditions that occur during program execution. Rather than crashing your program, exception handling lets you detect, respond to, and recover from these errors. Common examples include trying to open a file that doesn't exist, dividing by zero, or accessing an invalid array index.
+
+========== Basic Exception Handling Structure =============
+In C++, exception handling uses three keywords: try, catch, and throw.
+try {
+    // Code that might throw an exception
+    int result = riskyOperation();
+} catch (ExceptionType& e) {
+    // Code to handle the exception
+    cout << "Error occurred: " << e.what() << endl;
+}
+The try block contains code that might generate an exception. 
+If an exception occurs, execution immediately jumps to the appropriate catch block. 
+The catch block specifies what type of exception it handles and contains recovery code.
+
+
+========== Throwing Exceptions  =============
+You can throw exceptions explicitly using the throw keyword:
+double divide(int numerator, int denominator) {
+    if (denominator == 0) {
+        throw runtime_error("Division by zero");
+    }
+    return static_cast<double>(numerator) / denominator;
+}
+When this function encounters a zero denominator, it throws a runtime_error exception 
+with a descriptive message. The calling code can catch and handle this exception.
+
+
+========== Multiple Catch Blocks =============
+You can handle different exception types with multiple catch blocks:
+try {
+    processData();
+} catch (const invalid_argument& e) {
+    cout << "Invalid argument: " << e.what() << endl;
+} catch (const runtime_error& e) {
+    cout << "Runtime error: " << e.what() << endl;
+} catch (...) {
+    cout << "Unknown error occurred" << endl;
+}
+The catch blocks are checked in order, and the first matching type handles the exception. The catch (...) syntax catches any exception type and serves as a general fallback.
+
+========== Standard Exception Classes  =============
+C++ provides a hierarchy of standard exception classes in the <stdexcept> header:
+
+logic_error: Errors detectable before program execution (like invalid_argument, out_of_range)
+runtime_error: Errors detectable only during execution (like overflow_error, range_error)
+
+==========  Stack Unwinding =============
+1. Concept:
+When an exception is thrown, the program searches backward through the call stack looking for an appropriate catch block. 
+As it moves back through each function call, it systematically destroys all local objects in reverse order of their creation. 
+This process is called stack unwinding.
+
+2. Why Stack Unwinding Matters?
+Stack unwinding ensures that destructors are called for all local objects, 
+which is crucial for resource management. 
+This is the foundation of RAII (Resource Acquisition Is Initialization) in C++.
+
+3. The Danger: Raw Pointers and Manual Resources
+Stack unwinding only calls destructors for objects.
+It doesn't automatically free raw pointers or handle manual resource management.
+This is why modern C++ emphasizes smart pointers and RAII:
+
+void safeFunction() {
+    unique_ptr<int[]> data(new int[1000]);
+    
+    // If an exception occurs, unique_ptr's destructor
+    // automatically deletes the array during unwinding
+    processData(data.get());
+}
+
+4. Destructors and Stack Unwinding
+Destructors must never throw exceptions. 
+If a destructor throws during stack unwinding (while another exception is being handled), 
+the program calls std::terminate() and abruptly ends:
+
+=========== Where to put throw and catch in our Code ===============
+1. Container class: throw exceptions directly WITHOUT catching them. No try block, but just a throw statement.
+                    except for internal resource management such as memory allocation with RAII
+2. Application/driver code: catch exceptons and present user-friendly message
+3. Main Function: Final Safety Net
+
+=========== Best Practices for Placing Catch Blocks =============
+The placement of catch blocks depends on several factors. 
+1.  Catch at the Level Where You Can Handle It
+Golden Rule: Place catch blocks where you have enough context to meaningfully handle the error.
+    Do not catch too early with insufficient context
+
+2. Catch Where You Can Recover or Provide Context
+3. Different Levels, Different Responsibilities
+4. Resource Management: Catch Locally for Cleanup
+6. Don't Catch Just to Log and Re-throw
+
+=========== Key Points =============
+1. Multiple catch blocks handle different exception types from the same try block
+2. Catch order matters - specific exceptions must come before general ones
+3. Only one catch executes - once an exception is caught, other catch blocks are skipped
+4. Program continues after handling exceptions (doesn't crash)
+5. Catch-all handler catch (...) catches anything not caught by previous blocks
+6. Custom exceptions can be created by inheriting from standard exception classes

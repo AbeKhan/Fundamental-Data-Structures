@@ -1,0 +1,20 @@
+How std::make_unique works?
+
+For example, auto ptr = std::make_unique<Student>("Alice", 20);
+
+Step1: 
+It allocates memory using new Student("Alice", 20)
+It constructs a std::unique_ptr<Student> object
+It passes the raw pointer to the unique_ptr constructor
+It returns the unique_ptr object
+
+Step 2: The unique_ptr object takes ownership
+
+ptr is now a std::unique_ptr<Student> object (not just a function)
+It stores the raw pointer internally
+
+Step 3: When ptr goes out of scope
+
+The std::unique_ptr destructor runs (because unique_ptr is a class)
+Inside its destructor, it calls delete on the managed pointer
+This triggers the Student destructor
