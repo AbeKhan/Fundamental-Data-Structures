@@ -3,30 +3,31 @@
    by using vector
 */
 #ifndef HEAP_H
-#define	HEAP_H
+#define HEAP_H
 
 #include <vector>
 using namespace std;
 
-class Heap {
+class Heap
+{
 private:
-    vector<int> elements;  //instantiation of a template class vector<T>
-                              //elements.size() is 0
-                              //use push_back or pop_back to insert into and delete from the elements
-                              //vector is a stack (LIFO) 
-    
-public:
-    Heap();
-    ~Heap();
-    void  insert(int e); // adds a new element to this heap
-    int   top() const;	     // gets the min element in the heap without removal
-    int   removeMin();      // removes the min element from the heap
-    int   size() const;     // returns the # of elements in the heap
-    
-private: // utility functions called by insert and removeMin
+	vector<int> elements; // instantiation of a template class vector<T>
+						  // elements.size() is 0
+						  // use push_back or pop_back to insert into and delete from the elements
+						  // vector is a stack (LIFO)
 
-    void   heapifyDown();
-    void   heapifyUp();
+public:
+	Heap();
+	~Heap();
+	void insert(int); // adds a new element to this heap
+	int top() const;  // gets the min element in the heap without removal
+	int removeMin();  // removes the min element from the heap
+	int size() const; // returns the # of elements in the heap
+	friend ostream& operator<<(ostream&, Heap&);
+
+private: // utility functions called by insert and removeMin
+	void heapifyDown();
+	void heapifyUp();
 };
 
-#endif	
+#endif
