@@ -6,3 +6,9 @@ main.o: main.cpp Heap.h
 
 Heap.o: Heap.cpp Heap.h 
 	g++ -c -g Heap.cpp
+
+clean:
+	del *.o *.exe
+
+zip:
+	zip A6_Khan_Abraham.zip *.cpp *.h *.docx *.xlsx Makefile
